@@ -1,0 +1,7 @@
+FROM mcr.microsoft.com/mssql/server
+
+COPY create_database.sql create_database.sql
+COPY setup_database.sh setup_database.sh
+COPY entrypoint.sh entrypoint.sh
+
+CMD /bin/bash ./entrypoint.sh
