@@ -1,24 +1,36 @@
-version: "3.2"
+version: '3.4'
+
 services:
+  web:
+    image: ${DOCKER_REGISTRY-}web
+    build:
+      context: .
+      dockerfile: src/Web/Dockerfile
+    networks:
+      - frankpress
+    depends_on:
+      - mssql
+
   mssql:
-    build: ./database
+    image: ${DOCKER_REGISTRY-}mssql
     container_name: mssql
-    hostname: mssql
+    build: 
+      context: .
+      dockerfile: database/Dockerfile
     ports:
       - "1433:1433"
     environment:
       - SA_PASSWORD=SuperStrongPassword123
       - ACCEPT_EULA=Y
-      - MSSQL_PID=Express
     volumes:
       - mssql-data:/var/opt/mssql
     networks: 
-      - mssql
+      - frankpress
 
 volumes:
-    mssql-data:
+  mssql-data:
 
 networks: 
-  mssql:
-    name: mssql
+  frankpress:
+    name: frankpress
     driver: bridge
