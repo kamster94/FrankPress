@@ -1,17 +1,15 @@
 ﻿namespace FrankPress.DataAccess.DataModels
 {
-    public class IdentityProvider
+    public class IdentityProvider : BaseDataModel
     {
         private IdentityProvider()
         {
         }
 
-        public int Id { get; private set; }
-
         public string Name { get; private set; } = null!;
 
         public static IdentityProvider Create(
-            int id,
+            int? id,
             string name) =>
             new IdentityProvider()
             {

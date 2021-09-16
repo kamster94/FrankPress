@@ -1,19 +1,17 @@
 ﻿namespace FrankPress.DataAccess.DataModels
 {
-    public class Category
+    public class Category : BaseDataModel
     {
         private Category()
         {
         }
-
-        public int Id { get; private set; }
 
         public string Name { get; private set; } = null!;
 
         public string Slug { get; private set; } = null!;
 
         public static Category Create(
-            int id,
+            int? id,
             string name,
             string slug) =>
             new Category()

@@ -1,12 +1,10 @@
 ﻿namespace FrankPress.DataAccess.DataModels
 {
-    public class User
+    public class User : BaseDataModel
     {
         private User()
         {
         }
-
-        public int Id { get; private set; }
 
         public string Email { get; set; } = null!;
 
@@ -23,7 +21,7 @@
         public bool UseGravatar { get; private set; }
 
         public static User Create(
-            int id,
+            int? id,
             string email,
             string name,
             string lastName,

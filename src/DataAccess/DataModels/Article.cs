@@ -1,12 +1,13 @@
-﻿namespace FrankPress.DataAccess.DataModels
+﻿using System;
+using System.Collections.Generic;
+
+namespace FrankPress.DataAccess.DataModels
 {
-    public class Article
+    public class Article : BaseDataModel
     {
         private Article()
         {
         }
-
-        public int Id { get; private set; }
 
         public string Title { get; private set; } = null!;
 
@@ -29,7 +30,7 @@
         public DateTime ModifiedDate { get; private set; }
 
         public static Article Create(
-            int id,
+            int? id,
             string title,
             User author,
             Category category,

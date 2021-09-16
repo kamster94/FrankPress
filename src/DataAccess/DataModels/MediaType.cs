@@ -1,17 +1,15 @@
 ﻿namespace FrankPress.DataAccess.DataModels
 {
-    public class MediaType
+    public class MediaType : BaseDataModel
     {
         private MediaType()
         {
         }
 
-        public int Id { get; private set; }
-
         public string Name { get; private set; } = null!;
 
         public static MediaType Create(
-            int id,
+            int? id,
             string name) =>
             new MediaType()
             {

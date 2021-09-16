@@ -1,19 +1,17 @@
 ﻿namespace FrankPress.DataAccess.DataModels
 {
-    public class Tag
+    public class Tag : BaseDataModel
     {
         private Tag()
         {
         }
-
-        public int Id { get; private set; }
 
         public string Name { get; private set; } = null!;
 
         public string Slug { get; private set; } = null!;
 
         public static Tag Create(
-            int id,
+            int? id,
             string name,
             string slug) =>
             new Tag()
