@@ -15,7 +15,13 @@ namespace FrankPress.DataAccess.Extensions
                     configuration.GetConnectionString("DefaultConnection"),
                     x => x.MigrationsAssembly("DataAccess")));
 
+            services.AddScoped<IArticleRepository, ArticleRepository>();
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IIdentityProviderRepository, IdentityProviderRepository>();
+            services.AddScoped<IMediaRepository, MediaRepository>();
+            services.AddScoped<IMediaTypeRepository, MediaTypeRepository>();
             services.AddScoped<IRoleRepository, RoleRepository>();
+            services.AddScoped<ITagRepository, TagRepository>();
             services.AddScoped<IUserRepository, UserRepository>();
         }
     }
