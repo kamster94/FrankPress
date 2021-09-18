@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 
 namespace FrankPress.Web
@@ -12,6 +13,10 @@ namespace FrankPress.Web
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)
+                .ConfigureAppConfiguration((hostingContext, config) =>
+                {
+                    config.AddKeyPerFile(directoryPath: "/run/secrets", optional: true);
+                })
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
