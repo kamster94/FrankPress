@@ -8,6 +8,8 @@ services:
       dockerfile: src/Web/Dockerfile
     networks:
       - frankpress
+    secrets:
+      - ConnectionString
     depends_on:
       - mssql
 
@@ -15,17 +17,38 @@ services:
     image: ${DOCKER_REGISTRY-}mssql
     container_name: mssql
     build: 
-      context: .
-      dockerfile: database/Dockerfile
+      context: ./database
+      dockerfile: Dockerfile
     ports:
       - "1433:1433"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200k"
+        max-file: "10"
+    secrets:
+      - sa-password
+      - mssql-password
     environment:
-      - SA_PASSWORD=SuperStrongPassword123
-      - ACCEPT_EULA=Y
+      ACCEPT_EULA: Y
+      SA_PASSWORD_FILE: /run/secrets/sa-password
+      MSSQL_DATABASE: FrankPress
+      MSSQL_USER: FrankPress_app
+      MSSQL_PASSWORD_FILE: /run/secrets/mssql-password
+      MSSQL_PID: Developer
     volumes:
       - mssql-data:/var/opt/mssql
+      - ./database/db-init:/docker-entrypoint-initdb.d
     networks: 
       - frankpress
+
+secrets:
+  ConnectionString:
+    file: ./secrets/CONNECTION_STRING
+  sa-password:
+    file: ./secrets/SA_PASSWORD
+  mssql-password:
+    file: ./secrets/MSSQL_PASSWORD
 
 volumes:
   mssql-data:
