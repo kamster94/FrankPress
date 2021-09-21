@@ -1,49 +1,44 @@
 <template>
-  <q-page class="row items-center justify-evenly">
-    <example-component
-      title="Example component"
-      active
-      :todos="todos"
-      :meta="meta"
-    ></example-component>
+  <q-page class="justify-evenly q-pa-md items-start q-gutter-md items-center">
+    <article-container
+      v-for="article in articles"
+      :key="article.id"
+      :article="article"
+    ></article-container>
+
+    <div class="q-pa-lg flex flex-center">
+      <q-pagination
+        v-model="current"
+        :max="10"
+        :max-pages="6"
+        boundary-numbers
+      />
+    </div>
   </q-page>
 </template>
 
 <script lang="ts">
-import { Todo, Meta } from 'components/models';
-import ExampleComponent from 'components/CompositionComponent.vue';
+import ArticleContainer from 'src/components/ArticleContainer.vue';
 import { defineComponent, ref } from 'vue';
+import { Article } from 'components/models';
 
 export default defineComponent({
   name: 'PageIndex',
-  components: { ExampleComponent },
+  components: { ArticleContainer },
   setup() {
-    const todos = ref<Todo[]>([
+    const articles = ref<Article[]>([
       {
         id: 1,
-        content: 'ct1'
+        title: 'Test title',
+        content: 'ct1',
       },
       {
         id: 2,
-        content: 'ct2'
+        title: 'Test 2',
+        content: 'ct2',
       },
-      {
-        id: 3,
-        content: 'ct3'
-      },
-      {
-        id: 4,
-        content: 'ct4'
-      },
-      {
-        id: 5,
-        content: 'ct5'
-      }
     ]);
-    const meta = ref<Meta>({
-      totalCount: 1200
-    });
-    return { todos, meta };
-  }
+    return { articles, current: ref(3) };
+  },
 });
 </script>
