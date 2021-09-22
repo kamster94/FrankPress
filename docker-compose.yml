@@ -19,6 +19,9 @@ services:
     depends_on:
       - mssql
       - web
+    secrets:
+      - auth0-domain
+      - auth0-client-id
 
   web:
     image: ${DOCKER_REGISTRY-}web
@@ -68,6 +71,10 @@ secrets:
     file: ./secrets/SA_PASSWORD
   mssql-password:
     file: ./secrets/MSSQL_PASSWORD
+  auth0-domain:
+    file: ./secrets/AUTH0_DOMAIN
+  auth0-client-id:
+    file: ./secrets/AUTH0_CLIENT_SECRET
 
 volumes:
   mssql-data:
