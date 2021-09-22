@@ -5,8 +5,8 @@ WORKDIR /app
 COPY package.json /app/package.json
 
 RUN npm install
-RUN npm install @quasar/cli -g
+RUN npm install @vue/cli -g
 COPY . ./app
 
 # start app
-CMD ["quasar", "dev"]
+CMD ["npm", "run", "serve"]
