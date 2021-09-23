@@ -29,6 +29,8 @@ services:
       - frankpress
     secrets:
       - ConnectionString
+      - Auth0Domain
+      - Auth0Audience
     depends_on:
       - mssql
 
@@ -64,10 +66,15 @@ services:
 secrets:
   ConnectionString:
     file: ./secrets/CONNECTION_STRING
+  Auth0Domain:
+    file: ./secrets/AUTH0_DOMAIN
+  Auth0Audience:
+    file: ./secrets/AUTH0_AUDIENCE
   sa-password:
     file: ./secrets/SA_PASSWORD
   mssql-password:
     file: ./secrets/MSSQL_PASSWORD
+  
 
 volumes:
   mssql-data:
