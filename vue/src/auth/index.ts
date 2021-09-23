@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
 import createAuth0Client, {
   Auth0Client,
   GetIdTokenClaimsOptions,
