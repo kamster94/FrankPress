@@ -1,10 +1,17 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </div>
+  <app-header />
   <router-view />
 </template>
+
+<script>
+import AppHeader from '@/components/AppHeader';
+
+export default {
+  components: {
+    AppHeader
+  }
+};
+</script>
 
 <style lang="scss">
 #app {
