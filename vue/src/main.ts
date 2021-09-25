@@ -1,4 +1,6 @@
 import { createApp } from 'vue';
+import ElementPlus from 'element-plus';
+import 'element-plus/dist/index.css';
 import App from '@/App.vue';
 import { Auth0 } from '@/auth';
 import router from '@/router';
@@ -13,13 +15,13 @@ async function init() {
           : window.location.pathname
       );
     },
-    clientId: process.env.VUE_APP_AUTH0_CLIENT_KEY,
-    domain: process.env.VUE_APP_AUTH0_DOMAIN,
-    audience: process.env.VUE_APP_AUTH0_AUDIENCE,
+    clientId: process.env.VUE_APP_AUTH0_CLIENT_KEY ?? '',
+    domain: process.env.VUE_APP_AUTH0_DOMAIN ?? '',
+    audience: process.env.VUE_APP_AUTH0_AUDIENCE ?? '',
     redirectUri: window.location.origin
   });
   const app = createApp(App);
-  app.use(AuthPlugin).use(store).use(router).mount('#app');
+  app.use(AuthPlugin).use(store).use(router).use(ElementPlus).mount('#app');
 }
 
 init();
