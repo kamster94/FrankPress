@@ -9,13 +9,50 @@ const routes: Array<RouteRecordRaw> = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () =>
-      import(/* webpackChunkName: "about" */ '../views/About.vue'),
+    path: '/categories',
+    name: 'Categories',
+    component: Home
+  },
+  {
+    path: '/tags',
+    name: 'Tags',
+    component: Home
+  },
+  {
+    path: '/authors',
+    name: 'Authors',
+    component: Home
+  },
+  // Admin routes
+  {
+    path: '/admin',
+    name: 'Admin dashboard',
+    component: Home
+  },
+  {
+    path: '/admin/articles',
+    name: 'Articles management',
+    component: Home
+  },
+  {
+    path: '/admin/categories',
+    name: 'Categories management',
+    component: Home
+  },
+  {
+    path: '/admin/tags',
+    name: 'Tags management',
+    component: Home
+  },
+  {
+    path: '/admin/media',
+    name: 'Media management',
+    component: Home
+  },
+  {
+    path: '/admin/users',
+    name: 'Users management',
+    component: Home,
     beforeEnter: Auth0.routeGuard
   }
 ];
