@@ -3,8 +3,9 @@
 - This project is frontend for FrankPress CMS.
 - It's written in Vue.js 3, using TypeScript.
 - Uses npm as package manager.
-- Linting provided by ESlint
-- App uses ASP.NET 6 Web API to exchange data with database.
+- Linting provided by ESlint.
+- App uses ASP.NET 6 Web API to exchange data with database via Axios.
+- UI components provided by Quasar framework.
 
 ## Useful npm commands
 
