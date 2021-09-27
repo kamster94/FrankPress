@@ -1,30 +1,77 @@
 <template>
-  <div class="header-wrapper">
-    <div class="header-block center">
-      <h1>FrankPress</h1>
-    </div>
-    <div v-if="!isAuthenticated && !loading" class="header-block right">
-      <el-button
-        type="primary"
-        @click="login"
-        icon="el-icon-user"
-        title="Log in"
-        >Log in</el-button
+  <q-header elevated>
+    <q-toolbar class="bg-primary text-white rounded-borders">
+      <q-btn
+        v-if="$q.screen.xs"
+        flat
+        round
+        dense
+        icon="menu"
+        @click="drawerVisible = !drawerVisible"
+      />
+      <q-toolbar-title
+        ><strong>FrankPress</strong> / Simple CMS</q-toolbar-title
       >
-    </div>
-  </div>
-  <el-menu router class="el-menu-demo" mode="horizontal">
-    <el-menu-item index="1" route="/">Home</el-menu-item>
-    <el-menu-item index="2" route="/categories">Categories</el-menu-item>
-    <el-menu-item index="3" route="/tags">Tags</el-menu-item>
-  </el-menu>
+
+      <q-input
+        dark
+        dense
+        standout
+        v-model="searchText"
+        input-class="text-right"
+        class="q-ml-md"
+      >
+        <template v-slot:append>
+          <q-icon v-if="searchText === ''" name="search" />
+          <q-icon
+            v-else
+            name="clear"
+            class="cursor-pointer"
+            @click="searchText = ''"
+          />
+        </template>
+      </q-input>
+    </q-toolbar>
+
+    <q-toolbar class="bg-primary text-white rounded-borders">
+      <app-header-menu />
+
+      <q-space />
+
+      <app-header-login />
+    </q-toolbar>
+  </q-header>
+
+  <q-drawer
+    v-if="isAdmin"
+    v-model="drawerVisible"
+    show-if-above
+    :mini="miniState"
+    :width="300"
+    :breakpoint="500"
+    bordered
+    class="bg-grey-3"
+  >
+    <admin-menu
+      @toggled-mini-state="miniState = !miniState"
+      :miniState="miniState"
+    />
+  </q-drawer>
 </template>
 
 <script>
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import { inject } from 'vue';
-export default {
+import { inject, defineComponent, ref } from 'vue';
+import AdminMenu from '@/components/AdminMenu.vue';
+import AppHeaderLogin from '@/components/AppHeaderLogin.vue';
+import AppHeaderMenu from '@/components/AppHeaderMenu.vue';
+
+export default defineComponent({
   name: 'AppHeader',
+  components: {
+    AdminMenu,
+    AppHeaderLogin,
+    AppHeaderMenu
+  },
   inject: ['Auth'],
   methods: {
     login() {
@@ -35,28 +82,20 @@ export default {
       this.$router.push({ path: '/' });
     }
   },
+  computed: {
+    isAdmin() {
+      return this.$route.path.match('/admin*');
+    }
+  },
   setup() {
+    const miniState = ref(false);
     const auth = inject('Auth');
     return {
-      ...auth
+      ...auth,
+      searchText: ref(''),
+      drawerVisible: ref(false),
+      miniState
     };
   }
-};
+});
 </script>
-
-<style lang="scss" scoped>
-.left {
-  text-align: left;
-}
-.right {
-  text-align: right;
-}
-.center {
-  text-align: center;
-}
-.header-wrapper {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-}
-</style>

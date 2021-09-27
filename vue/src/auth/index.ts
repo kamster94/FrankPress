@@ -115,8 +115,6 @@ interface Auth0PluginOptions {
 
 async function init(options: Auth0PluginOptions): Promise<Plugin> {
   client = await createAuth0Client({
-    // domain: process.env.VUE_APP_AUTH0_DOMAIN,
-    // client_id: process.env.VUE_APP_AUTH0_CLIENT_KEY,
     domain: options.domain,
     client_id: options.clientId,
     audience: options.audience,

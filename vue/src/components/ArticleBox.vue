@@ -1,19 +1,20 @@
 <template>
-  <el-card class="article-box">
-    <template #header>
-      <div class="card-header">
-        <span> {{ article.Title }} </span>
-      </div>
-    </template>
-    <div class="text item">{{ article.Content }}</div>
-  </el-card>
+  <q-card flat bordered class="article">
+    <q-card-section>
+      <div class="text-h6">{{ article.Title }}</div>
+    </q-card-section>
+
+    <q-card-section>
+      {{ article.Content }}
+    </q-card-section>
+  </q-card>
 </template>
 
 <script lang="ts">
 import { Article } from '@/models';
-import { PropType } from 'vue';
+import { defineComponent, PropType } from 'vue';
 
-export default {
+export default defineComponent({
   name: 'ArticleBox',
   props: {
     article: {
@@ -21,13 +22,12 @@ export default {
       required: true
     }
   }
-};
+});
 </script>
 
-<style lang="scss" scoped>
-.article-box {
-  max-width: 70%;
-  margin-left: auto;
-  margin-right: auto;
-}
+<style lang="sass" scoped>
+.article
+  max-width: 50em
+  margin-left: auto
+  margin-right: auto
 </style>
