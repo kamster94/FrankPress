@@ -40,6 +40,8 @@ namespace FrankPress.Web
 
             app.UseRouting();
 
+            app.UseSentryTracing();
+
             app.UseAuthentication();
 
             app.UseAuthorization();
