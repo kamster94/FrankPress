@@ -12,7 +12,7 @@ namespace FrankPress.DataAccess.Extensions
         {
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(
-                    configuration.GetSection("ConnectionString").Value,
+                    configuration.GetConnectionString("Primary"),
                     x => x.MigrationsAssembly("DataAccess")));
 
             services.AddScoped<IArticleRepository, ArticleRepository>();
