@@ -17,7 +17,8 @@ It is more of a proof of concept and personal exercise rather than complete prod
   5. After running migrations you can connect to the database and verify all tables are created correctly.
   6. If migrations run successfully, remember to switch startup project back to docker compose.
 - For setting up authentication service, see Auth0 section.
-- Fill in `vue/.env` file, providing details from your Auth0 services.
+- Fill in `appsettings.Development.json` file, providing all necessary secrets into appropriate sections.
+- Fill in `vue/.env` file, providing details from your Auth0 services and any other necessary key referenced there.
 - I recommend running the app using docker-compose profile, it'll automatically grab container started by Visual Studio and run application in it.
 
 ## Auth0 authentication service
@@ -26,6 +27,14 @@ It is more of a proof of concept and personal exercise rather than complete prod
 - To run this, you'll need a free account from this site: https://auth0.com/.
 - To run this app, you need to create one application (with SPA profile), and one API.
 - Follow guides provided in Auth0 dashboard to find all relevant settings and populate appropriate secrets.
+
+## Sentry logging and telemetry
+
+- This app utilizes Sentry service to gather logs and requests performance.
+- To use it you'll need a free account from this site: https://sentry.io.
+- Remember to fill `Dsn` key in `Sentry` section of `appsettings.Development.json` using value from Sentry platform.
+- If you've configured everything properly, you should see logs from app gathered by Sentry in the dashboard.
+- If you have problems or questions regarding Sentry, check documentation at: https://docs.sentry.io/.
 
 ### Credits
 
