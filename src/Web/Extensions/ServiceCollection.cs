@@ -13,13 +13,13 @@ namespace FrankPress.Web.Authentication
     {
         public static void AddAuth0Authentication(this IServiceCollection services, IConfiguration configuration)
         {
-            string domain = configuration.GetSection("Auth0Domain").Value;
+            string domain = configuration.GetSection("Auth0:Domain").Value;
             services
                 .AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
                 .AddJwtBearer(options =>
                 {
                     options.Authority = domain;
-                    options.Audience = configuration.GetSection("Auth0Audience").Value;
+                    options.Audience = configuration.GetSection("Auth0:Audience").Value;
                     options.RequireHttpsMetadata = false;
                     options.TokenValidationParameters = new TokenValidationParameters
                     {
