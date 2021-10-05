@@ -1,27 +1,29 @@
-﻿namespace FrankPress.DataAccess.DataModels
+﻿namespace FrankPress.Domain.DomainModels
 {
-    public class User : BaseDataModel
+    public record User
     {
         private User()
         {
         }
 
-        public string Email { get; private set; } = null!;
+        public int Id { get; init; }
 
-        public string Name {  get; private set; } = null!;
+        public string Email { get; init; } = null!;
 
-        public string LastName { get; private set; } = null!;
+        public string Name { get; init; } = null!;
 
-        public string DisplayName {  get; private set; } = null!;
+        public string LastName { get; init; } = null!;
 
-        public Role UserRole { get; private set; } = null!;
+        public string DisplayName { get; init; } = null!;
 
-        public IdentityProvider IdentityProvider { get; private set; } = null!;
+        public Role UserRole { get; init; } = null!;
 
-        public bool UseGravatar { get; private set; }
+        public IdentityProvider IdentityProvider { get; init; } = null!;
+
+        public bool UseGravatar { get; init; }
 
         public static User Create(
-            int? id,
+            int id,
             string email,
             string name,
             string lastName,

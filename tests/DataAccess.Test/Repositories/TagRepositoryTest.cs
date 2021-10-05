@@ -1,11 +1,9 @@
-﻿using FrankPress.DataAccess;
-using FrankPress.DataAccess.Abstractions;
-using FrankPress.DataAccess.DataModels;
+﻿using FrankPress.DataAccess.DataModels;
 using FrankPress.DataAccess.Repositories;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DataAccess.Test.Repositories
+namespace FrankPress.DataAccess.Test.Repositories
 {
     public class TagRepositoryTest : BaseRepositoryTest<Tag>
     {

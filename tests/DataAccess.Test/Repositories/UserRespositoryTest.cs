@@ -3,7 +3,7 @@ using FrankPress.DataAccess.DataModels;
 using Xunit;
 using System.Threading.Tasks;
 
-namespace DataAccess.Test.Repositories
+namespace FrankPress.DataAccess.Test.Repositories
 {
     public class UserRespositoryTest : BaseRepositoryTest<User>
     {
@@ -41,18 +41,18 @@ namespace DataAccess.Test.Repositories
         }
 
         [Fact]
-        public async Task GetByIdentityProvider_ShouldReturnRole()
+        public async Task GetByIdentityProviderAndEmail_ShouldReturnRole()
         {
             //Arrange
             var user = await GetUser();
             user = await Repository!.Save(user);
 
             //Act
-            var results = await ((UserRepository)Repository!).GetByIdentityProvider((int)user.IdentityProvider.Id!);
+            var result = await ((UserRepository)Repository!).GetByIdentityProviderAndEmail((int)user.IdentityProvider.Id!, user.Email);
 
             //Assert
-            Assert.NotEmpty(results);
-            Assert.Contains(user, results);
+            Assert.NotNull(result);
+            Assert.Equal(user, result);
         }
 
         protected async Task<User> GetUser(int? id = null, string? name = null)

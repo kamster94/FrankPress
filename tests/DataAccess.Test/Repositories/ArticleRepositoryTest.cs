@@ -4,11 +4,10 @@ using FrankPress.DataAccess.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DataAccess.Test.Repositories
+namespace FrankPress.DataAccess.Test.Repositories
 {
     public class ArticleRepositoryTest : BaseRepositoryTest<Article>
     {

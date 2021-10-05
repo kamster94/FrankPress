@@ -1,4 +1,5 @@
 using FrankPress.DataAccess.Extensions;
+using FrankPress.Domain.Extensions;
 using FrankPress.Web.Authentication;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -22,6 +23,7 @@ namespace FrankPress.Web
         {
             services.AddAuth0Authentication(Configuration);
             services.AddDataAccess(Configuration);
+            services.AddDomain();
             services.AddControllers();
             services.AddSwagger();
         }

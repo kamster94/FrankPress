@@ -6,13 +6,13 @@ using Microsoft.Extensions.DependencyInjection;
 
 namespace FrankPress.DataAccess.Extensions
 {
-    public static class ServiceCollection
+    public static class ServiceCollectionExtensions
     {
         public static void AddDataAccess(this IServiceCollection services, IConfiguration configuration)
         {
             services.AddDbContext<DatabaseContext>(options =>
                 options.UseSqlServer(
-                    configuration.GetConnectionString("Primary"),
+                    configuration.GetConnectionString("Default"),
                     x => x.MigrationsAssembly("DataAccess")));
 
             services.AddScoped<IArticleRepository, ArticleRepository>();

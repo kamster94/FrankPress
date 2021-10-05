@@ -8,6 +8,6 @@ namespace FrankPress.DataAccess.Abstractions
     {
         public Task<IEnumerable<User>?> GetByRole(int roleId);
 
-        public Task<IEnumerable<User>?> GetByIdentityProvider(int identityProviderId);
+        public Task<User?> GetByIdentityProviderAndEmail(int identityProviderId, string email);
     }
 }

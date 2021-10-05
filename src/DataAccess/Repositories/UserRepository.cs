@@ -13,7 +13,7 @@ namespace FrankPress.DataAccess.Repositories
         {
         }
 
-        public async Task<IEnumerable<User>?> GetByIdentityProvider(int identityProviderId)
+        public async Task<User?> GetByIdentityProviderAndEmail(int identityProviderId, string email)
         {
             if (_databaseContext.Users == null)
             {
@@ -21,8 +21,7 @@ namespace FrankPress.DataAccess.Repositories
             }
 
             return await _databaseContext.Users
-                .Where(x => x.IdentityProvider.Id == identityProviderId)
-                .ToListAsync();
+                .FirstOrDefaultAsync(x => x.IdentityProvider.Id == identityProviderId && x.Email == email);
         }
 
         public async Task<IEnumerable<User>?> GetByRole(int roleId)

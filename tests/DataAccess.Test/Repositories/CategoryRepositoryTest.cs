@@ -3,7 +3,7 @@ using FrankPress.DataAccess.Repositories;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DataAccess.Test.Repositories
+namespace FrankPress.DataAccess.Test.Repositories
 {
     public class CategoryRepositoryTest : BaseRepositoryTest<Category>
     {

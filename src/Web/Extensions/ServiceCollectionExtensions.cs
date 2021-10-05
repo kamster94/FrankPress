@@ -9,7 +9,7 @@ using System.Security.Claims;
 
 namespace FrankPress.Web.Authentication
 {
-    public static class ServiceCollection
+    public static class ServiceCollectionExtensions
     {
         public static void AddAuth0Authentication(this IServiceCollection services, IConfiguration configuration)
         {

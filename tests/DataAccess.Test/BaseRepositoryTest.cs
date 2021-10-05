@@ -1,14 +1,13 @@
-﻿using FrankPress.DataAccess;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DataAccess.Test
+namespace FrankPress.DataAccess.Test
 {
-    public class BaseRepositoryTest<T>  : IDisposable where T : BaseDataModel
+    public class BaseRepositoryTest<T> : IDisposable where T : BaseDataModel
     {
         protected BaseRepository<T>? Repository { get; set; }
         protected Func<int?, string?, T> GetEntity { get; set; } = null!;
@@ -25,7 +24,7 @@ namespace DataAccess.Test
 
             _databaseContext = new DatabaseContext(
                 new DbContextOptionsBuilder<DatabaseContext>()
-                .UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
+                .UseSqlServer(Configuration.GetConnectionString("Default"))
                 .Options);
 
             _transaction = _databaseContext.Database.BeginTransaction();

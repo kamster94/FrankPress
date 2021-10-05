@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DataAccess.Test.Repositories
+namespace FrankPress.DataAccess.Test.Repositories
 {
     public class MediaRepositoryTest : BaseRepositoryTest<Media>
     {

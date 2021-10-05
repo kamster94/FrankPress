@@ -3,7 +3,7 @@ using FrankPress.DataAccess.DataModels;
 using Xunit;
 using System.Threading.Tasks;
 
-namespace DataAccess.Test.Repositories
+namespace FrankPress.DataAccess.Test.Repositories
 {
     public class RoleRepositoryTest : BaseRepositoryTest<Role>
     {

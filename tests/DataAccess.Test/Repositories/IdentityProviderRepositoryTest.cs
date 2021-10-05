@@ -3,7 +3,7 @@ using FrankPress.DataAccess.Repositories;
 using System.Threading.Tasks;
 using Xunit;
 
-namespace DataAccess.Test.Repositories
+namespace FrankPress.DataAccess.Test.Repositories
 {
     public class IdentityProviderRepositoryTest : BaseRepositoryTest<IdentityProvider>
     {
@@ -24,6 +24,21 @@ namespace DataAccess.Test.Repositories
 
         [Fact]
         public async Task GetAll_ShouldReturnIdentityProviders() => await GetAll_Test();
+
+        [Fact]
+        public async Task GetByName_ShouldReturnIdentityProvider()
+        {
+            //Arrange
+            var identityProvider = GetIdentityProvider();
+            identityProvider = await Repository!.Save(identityProvider);
+
+            //Act
+            var result = await ((IdentityProviderRepository)Repository!).GetByName(identityProvider.Name);
+
+            //Assert
+            Assert.NotNull(result);
+            Assert.Equal(identityProvider, result);
+        }
 
         protected IdentityProvider GetIdentityProvider(int? id = null, string? name = null)
         {
